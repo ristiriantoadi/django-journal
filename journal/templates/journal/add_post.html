@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form" action="/journal/add_post" method="POST">{% csrf_token %}
+        <div class="form__item">
+            <div>
+                <label for="givenname" class="form__label">Title</label>
+                <input type="text" name="title" class="form__input" placeholder="Give your name here">
+            </div>
+            <div>
+                <label for="number" class="form__label">Content</label>
+                <textarea id="w3review" name="content" rows="4" cols="50"></textarea>
+            </div>
+            <div>
+                <label for="cars" class="form__label">Author</label>
+                <input type="number" name="author">
+            </div>
+            <input type="submit" value="kirim">
+        </div>
+    </form>
+</body>
+</html>

@@ -9,9 +9,29 @@ def index(request):
     # return HttpResponse("Hello, world. You're at the journal index.")
     # e = Entri(title="entri 1",content="lorem ipsum dolor sit amet",author=1)
     # e.save()
+
+    posts=[
+        {
+            'title':'entri 1',
+            'author':'adi3d',
+        },
+                {
+            'title':'entri 2',
+            'author':'adi3d',
+        },
+                {
+            'title':'entri 3',
+            'author':'adi3d',
+        }
+    ]
+    context={
+        # 'posts': Entri.objects.all()
+        'posts': Entri.objects.filter(title="entri 1")
+    }
+
     if request.user.is_authenticated:
-        return HttpResponse(request.user.username)
-    return render(request, 'journal/index.html')
+        return render(request, 'journal/index.html',context)
+    return render(request, 'journal/index.html',context)
 def post(request):
     all_entries = Entri.objects.get(kolom="someValue")
     print(all_entries)

@@ -6,12 +6,105 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        .login-register-input{
-            margin: 6px 0;
+
+        *{
+
             box-sizing: border-box;
-            width: 90%;
+            padding:0;
+            margin:0;
         }
-    </style>
+        a {
+            color: #0f548a;
+            text-decoration: none;
+            font-size: 13px;
+            cursor:pointer
+        }
+
+        a:hover{
+            color:#1891f0;
+        }
+
+        body{
+                /* padding:20px; */
+                background-color: #f0f4f7;
+                font-size:13px;
+                box-sizing: border-box;
+                
+            }
+        
+        .box{
+                padding: 12px 12px 4px 12px;
+                border: 1px solid #a3bac9;
+                border-radius:3px;
+                background:white;
+        }
+
+        .box.login{
+            width:450px;
+            margin: 0 auto;
+        }
+
+        .box.login .header{
+            text-align:center;
+        }
+
+        .header{
+                padding-top:4px;
+                padding-bottom:16px;
+                padding: 4px 4px 16px 4px;
+                border-bottom: 1px solid #dae2e8;
+            }
+        .phui-header{
+                font-size:24px;
+                line-height: 24px;
+                color: #003965;
+        }
+           
+        .dashboard-panel{
+                padding:20px;
+        }
+
+        .input-item label{
+                margin-right:10px;
+                width:80px;
+                display: inline-block;
+                font-size:16px;
+                line-height: 1.5;
+        }
+
+        .input-item{
+                display: flex;
+                align-items: center;
+                margin-bottom:14px;
+        }
+
+        .button,button{
+                font-weight: bold;
+                color:#ffffff;
+                background: #003965;
+                padding: 5px 3px !important;
+                font-size: 1rem;
+                text-shadow: none;
+                line-height: 1.2;
+                display: inline-block;
+                margin: 0 10px 0 0;
+                border-radius: 4px;
+                border: 3px solid transparent;
+                cursor: pointer;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                text-decoration: none !important;
+                text-align: center;
+            }
+            
+            #content{
+                /* padding-top:20px; */
+                display: flex;
+                height: 100vh;
+                align-items: center;
+            }
+
+        </style>
 </head>
 <body>
     <!-- <navbar>
@@ -22,7 +115,28 @@
         </ul>
     </navbar> -->
     <div id="content">
-        <div id="login-container" style="width: 300px;margin: 0 auto;">
+        <div class="box login">
+            <div class="header">
+                <h1><span class="phui-header">Login</span></h1>
+            </div>
+            <div class="dashboard-panel">
+                <form>
+                    <div class="input-item">
+                        <label name="username" id="username">Username</label>
+                        <input placeholder="username ..." type="text" name="username" id="username">
+                    </div>
+                    <div class="input-item">
+                        <label name="password" id="password">Password</label>
+                        <input placeholder="password ..." type="password" name="password" id="password">
+                    </div>
+                    <div class="input-item">
+                        <input class="button" type="submit" value="Login">
+                        <span><a href="/register">Register</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- <div id="login-container" style="width: 300px;margin: 0 auto;">
             <h2 style="text-align: center;">Login</h2>
             <form action="login" method="POST" id="input" style="text-align: center;padding-top: 40px;">
                 {% csrf_token %}
@@ -30,7 +144,7 @@
                 <input placeholder="password" class="login-register-input" type="password" name="password" >
                 <input type="submit" value="Login" style="background-color: skyblue;padding: 10px;" class="login-register-input"/>
             </form>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>

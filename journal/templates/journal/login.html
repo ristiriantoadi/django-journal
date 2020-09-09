@@ -1,11 +1,50 @@
-<!DOCTYPE html>
+{% extends "journal/base.html" %}
+{%block content %}
+    <div id="content" class="login-register">
+        <div class="box login">
+            <div class="header">
+                <h1><span class="phui-header">Login</span></h1>
+            </div>
+            <div class="dashboard-panel">
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <div class="input-item">
+                        <label name="username" id="username">Username</label>
+                        <input required placeholder="username ..." type="text" name="username" id="username">
+                    </div>
+                    <div class="input-item">
+                        <label name="password" id="password">Password</label>
+                        <input required placeholder="password ..." type="password" name="password" id="password"s>
+                    </div>
+                    <div class="input-item">
+                        <input class="button" type="submit" value="Login">
+                        <span><a href="/register">Register</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- <div id="login-container" style="width: 300px;margin: 0 auto;">
+            <h2 style="text-align: center;">Login</h2>
+            <form action="login" method="POST" id="input" style="text-align: center;padding-top: 40px;">
+                {% csrf_token %}
+                <input placeholder="username" class="login-register-input" type="text" name="username">
+                <input placeholder="password" class="login-register-input" type="password" name="password" >
+                <input type="submit" value="Login" style="background-color: skyblue;padding: 10px;" class="login-register-input"/>
+            </form>
+        </div> -->
+    </div>
+{%endblock content%}
+
+<!-- {% load static %} -->
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
+    <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'journal/style.css' %}"/> -->
+    <!-- <style>
 
         *{
 
@@ -66,9 +105,9 @@
 
         .input-item label{
                 margin-right:10px;
-                width:80px;
+                width:100px;
                 display: inline-block;
-                font-size:16px;
+                font-size:14px;
                 line-height: 1.5;
         }
 
@@ -104,9 +143,16 @@
                 align-items: center;
             }
 
-        </style>
-</head>
-<body>
+            input[type="text"],input[type="password"],select{
+                padding:0.9em;
+                font-size:14px;
+                width:100%;
+                max-width: 425px;
+            }
+
+        </style> -->
+<!-- </head> -->
+<!-- <body> -->
     <!-- <navbar>
         <a class="logo" href="#">Jurnal Django</a>
         <ul class="navbar-menu">
@@ -114,20 +160,21 @@
             <li><a href="register.html">Register</a></li>
         </ul>
     </navbar> -->
-    <div id="content">
+    <!-- <div id="content">
         <div class="box login">
             <div class="header">
                 <h1><span class="phui-header">Login</span></h1>
             </div>
             <div class="dashboard-panel">
-                <form>
+                <form action="/login" method="POST">
+                    {% csrf_token %}
                     <div class="input-item">
                         <label name="username" id="username">Username</label>
-                        <input placeholder="username ..." type="text" name="username" id="username">
+                        <input required placeholder="username ..." type="text" name="username" id="username">
                     </div>
                     <div class="input-item">
                         <label name="password" id="password">Password</label>
-                        <input placeholder="password ..." type="password" name="password" id="password">
+                        <input required placeholder="password ..." type="password" name="password" id="password"s>
                     </div>
                     <div class="input-item">
                         <input class="button" type="submit" value="Login">
@@ -135,7 +182,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
         <!-- <div id="login-container" style="width: 300px;margin: 0 auto;">
             <h2 style="text-align: center;">Login</h2>
             <form action="login" method="POST" id="input" style="text-align: center;padding-top: 40px;">
@@ -145,6 +192,6 @@
                 <input type="submit" value="Login" style="background-color: skyblue;padding: 10px;" class="login-register-input"/>
             </form>
         </div> -->
-    </div>
-</body>
-</html>
+    <!-- </div> -->
+<!-- </body> -->
+<!-- </html> -->

@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from journal.models import Entri
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect
 
 def index(request):
@@ -63,8 +63,11 @@ def login_user(request):
         if user is not None:
             login(request, user)
             # return redirect('/journal')
-            return HttpResponse(user.username)
+            return redirect('journal/')
     return render(request, 'journal/login.html')
+def logout_user(request):
+    logout(request)
+    return HttpResponse("logout success")
 
 def register(request):
     if request.method == "POST":
@@ -73,5 +76,4 @@ def register(request):
         email = request.POST.get('email', '')
         password = request.POST.get('password', '')
         user = User.objects.create_user(username, email, password)
-        return HttpResponse("register successful")
     return render(request, 'journal/register.html')

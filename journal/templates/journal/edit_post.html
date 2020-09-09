@@ -1,25 +1,57 @@
 {% extends "journal/base.html" %}
 {%block content %}
+<!-- <style>
+    .add-post{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+
+    .input-item-add-post{
+        display: block;
+    }
+
+    .input-item.input-item-add-post label{
+        display: block;
+    }    
+
+    .box-add-post{
+        width: 1200px;
+    }
+
+    .input-add-post{
+        max-width: none!important;
+        /* width: 100%!important; */
+    }
+
+    .input-add-post.textarea{
+        height:1200px;
+    }
+
+</style> -->
 <div id="content" class="add-post">
     <div class="box box-add-post">
         <div class="header">
-            <h1><span class="phui-header">Add Post</span></h1>
+            <h1><span class="phui-header">Edit Post</span></h1>
         </div>
         <div class="dashboard-panel">
             <div>
-                <form class="form" action="/journal/add_post" method="POST">{% csrf_token %}
+                <form class="form" action="/journal/edit_post" method="POST">{% csrf_token %}
+                    <input type="hidden" name="id" value="{{id}}">
                     <div class="input-item input-item-add-post">
                         <label for="givenname" class="form__label">Title</label>
                         <div>
-                            <input  class="input-add-post" type="text" name="title" class="form__input" placeholder="Give your name here">
+                            <input  class="input-add-post" value="{{post.title}}" type="text" name="title" class="form__input" placeholder="Give your name here">
                         </div>
                     </div>
                     <div class="input-item input-item-add-post">
                         <label for="number" class="form__label">Content</label>
-                        <textarea class="input-add-post textarea" id="w3review" name="content" rows="10"></textarea>
+                        <textarea class="input-add-post textarea" id="w3review" name="content" rows="10">
+                            {{post.content}}
+                        </textarea>
                     </div>
                     <div class="input-item">
-                        <input class="button" type="submit" value="kirim">
+                        <input class="button" type="submit" value="simpan">
                     </div>
                 </form>
             </div>

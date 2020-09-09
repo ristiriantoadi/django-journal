@@ -95,7 +95,7 @@ body{
         align-items: center!important;
     }
 
-    input[type="text"],input[type="password"],select{
+    input[type="text"],input[type="password"],select,textarea{
         padding:0.9em;
         font-size:14px;
         width:100%;
@@ -120,7 +120,7 @@ body{
 
         .info{
             font-size: 0.9em;
-            color: #c0c0c0;
+            color: #a69c9c;
             font-weight: 300;
         }
 
@@ -192,8 +192,8 @@ body{
 
         .info{
             font-size: 0.9em;
-            color: #c0c0c0;
-            font-weight: 300;
+            color: #b08f8f;
+            font-weight: 500;
         }
 
         .info span{
@@ -243,4 +243,41 @@ body{
             list-style: none;
             padding: 0 10px;
             box-sizing: border-box;
+        }
+        .button-delete-edit{
+            padding-top: 20px;
+        }
+
+        .button-delete-edit .delete{
+            background:red;
+        }
+        .button-delete-edit .edit{
+            background:blue;
+        }
+
+        .add-post{
+            display: flex;
+            align-items:center;
+            justify-content: center;
+        }
+    
+        .input-item-add-post{
+            display: block;
+        }
+    
+        .input-item.input-item-add-post label{
+            display: block;
+        }    
+    
+        .box-add-post{
+            width: 1200px;
+        }
+    
+        .input-add-post{
+            max-width: none!important;
+            /* width: 100%!important; */
+        }
+    
+        .input-add-post.textarea{
+            height:1200px;
         }

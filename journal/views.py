@@ -9,34 +9,66 @@ def index(request):
     # return HttpResponse("Hello, world. You're at the journal index.")
     # e = Entri(title="entri 1",content="lorem ipsum dolor sit amet",author=1)
     # e.save()
-
-    posts=[
-        {
-            'title':'entri 1',
-            'author':'adi3d',
-        },
-                {
-            'title':'entri 2',
-            'author':'adi3d',
-        },
-        {
-            'title':'entri 3',
-            'author':'adi3d',
-        }
-    ]
-    context={
-        # 'posts': Entri.objects.all()
-        'posts': Post.objects.filter(user=User.objects.get(username=request.user.username))
-    }
-
     if request.user.is_authenticated:
+        posts=[
+            {
+                'title':'entri 1',
+                'author':'adi3d',
+            },
+                    {
+                'title':'entri 2',
+                'author':'adi3d',
+            },
+            {
+                'title':'entri 3',
+                'author':'adi3d',
+            }
+        ]
+        context={
+            # 'posts': Entri.objects.all()
+            'posts': Post.objects.filter(user=User.objects.get(username=request.user.username)).order_by('-date_posted')
+        }
         return render(request, 'journal/index.html',context)
     # return render(request, 'journal/index.html',context)
-    return redirect('login')
+    return redirect('/login')
+
 def post(request):
     all_entries = Entri.objects.get(kolom="someValue")
     print(all_entries)
     return HttpResponse(all_entries)
+
+def read_post(request):
+    if request.user.is_authenticated:
+        id=request.GET.get('id','')
+        context = {
+            'post':Post.objects.get(id=id)
+        }
+        return render(request, 'journal/read_post.html',context)
+    return redirect('/login')
+
+def edit_post(request):
+    if request.method == "POST":
+        id=request.POST.get('id','') 
+        post=Post.objects.get(id=id)
+        post.title=request.POST.get('title','')
+        post.content=request.POST.get('content','')
+        post.save()
+        return redirect('/journal')     
+    
+    id=request.GET.get('id','')
+    context = {
+            'post':Post.objects.get(id=id),
+            'id':id
+        }
+    # post.delete()
+    # return HttpResponse("edit post")
+    return render(request,'journal/edit_post.html',context)
+
+def delete_post(request):
+    id=request.GET.get('id','')
+    post=Post.objects.get(id=id)
+    post.delete()
+    return redirect('/journal')
 
 def add_post(request):
     # entri = Entri.objects.get(pk = 2) 
@@ -75,7 +107,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return HttpResponse("logout success")
+    return redirect('/login')
 
 def register(request):
     if request.method == "POST":

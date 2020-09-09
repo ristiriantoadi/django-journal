@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from journal.models import Entri
+from journal.models import Entri,Post
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect
@@ -19,37 +19,44 @@ def index(request):
             'title':'entri 2',
             'author':'adi3d',
         },
-                {
+        {
             'title':'entri 3',
             'author':'adi3d',
         }
     ]
     context={
         # 'posts': Entri.objects.all()
-        'posts': Entri.objects.filter(title="entri 1")
+        'posts': Post.objects.filter(user=User.objects.get(username=request.user.username))
     }
 
     if request.user.is_authenticated:
         return render(request, 'journal/index.html',context)
-    return render(request, 'journal/index.html',context)
+    # return render(request, 'journal/index.html',context)
+    return redirect('login')
 def post(request):
     all_entries = Entri.objects.get(kolom="someValue")
     print(all_entries)
     return HttpResponse(all_entries)
 
 def add_post(request):
+    # entri = Entri.objects.get(pk = 2) 
+    # entri.delete()
     if request.method == "POST":
         title = request.POST.get('title', '')
         content = request.POST.get('content','')
-        author = request.POST.get('author','')
-
-        e = Entri(title=title,content=content,author=author)
+        user=User.objects.get(username=request.user.username)
+        e = Post(title=title,content=content,user=user)
         e.save()
 
-        entries = Entri.objects.all()
+        posts = Post.objects.all()
 
-        return HttpResponse(entries)
+        return redirect('/journal')
 
+    # title = "Something Wicked This Way Come"
+    # content = "this is a post"
+    # user=User.objects.get(username=request.user.username)
+    # e = Post(title=title,content=content,user=user)
+    # e.save()
     return render(request, 'journal/add_post.html')
 
 def login_user(request):
@@ -65,6 +72,7 @@ def login_user(request):
             # return redirect('/journal')
             return redirect('journal/')
     return render(request, 'journal/login.html')
+
 def logout_user(request):
     logout(request)
     return HttpResponse("logout success")
